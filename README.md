@@ -27,8 +27,8 @@ The following scripts are used for the project.
 ## Authors
 
 * **Hari Om Ahlawat** - hariomahlawat@gmail.com
-* **Prashant Kumar**
 * **Mayank Jain**
+* **Prashant Kumar**
 * **Chahat Bansal**
 .
 

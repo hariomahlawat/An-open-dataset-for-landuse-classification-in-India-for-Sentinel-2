@@ -4,7 +4,7 @@ In this paper, we have addressed various challenges in land cover classification
 
 ## Dataset
 
-The training dataset in the folder named training_osm_india.zip
+The training dataset in the folder named training_dataset_india.zip
 
 ## Scripts
 

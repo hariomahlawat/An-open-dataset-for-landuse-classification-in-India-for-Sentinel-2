@@ -24,16 +24,6 @@ The following scripts are used for the project.
     * pandas
 
 
-## Authors
 
-* **Hari Om Ahlawat** - hariomahlawat@gmail.com
-* **Mayank Jain**
-* **Prashant Kumar**
-* **Chahat Bansal**
-.
-
-## License
-
-This project is licensed under the MIT License.
 
 

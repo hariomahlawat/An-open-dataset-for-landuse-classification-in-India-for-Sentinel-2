@@ -4,7 +4,7 @@ In this project, we have addressed various challenges in land cover classificati
 
 ## Dataset
 
-The training dataset in the folder named training_dataset_india.zip
+The training dataset in the folder named IndiaSat_dataset.zip
 
 ## Scripts
 

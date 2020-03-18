@@ -13,7 +13,7 @@ The following scripts are used for the project.
 * **validation_accuray.js**  -  To calculate the k-fold validation accuracy of the dataset using GEE (Google Earth Engine).
 * **monthly_prediction.js**  -  To obtain Monthly classification results of a given area using GEE (Google Earth Engine).
 * **final_yearly_prediction.ipynb**  -  To calculate the final prediction (land-use classification prediction) of a given area using the monthly prediction results.
-*    **temporal_correction.ipynb**  -  To do the temporal correction over yearly predictions of a given area.
+*    **temporal_correction.py**  -  To do the temporal correction over yearly predictions of a given area.
 
 ## Prerequisites
 * Google Earth Engine(GEE) account to run the google earth engine scripts for downloading and images and run the classifier

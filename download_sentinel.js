@@ -33,8 +33,8 @@ for (var i in state_list) {
   
   var state_name = state_list[i];
   // shapefiles of all states are loaded in assests. You need to upload your shapefiles in assest and then change the path accordingly
-  var state = ee.FeatureCollection('users/hariomahlawat/India_States') 
-    .filter(ee.Filter.eq('ST_NM',state_name)); //'ST_NM' is the state name field in shapefile. It can be different for different shapefiles.
+  var state = ee.FeatureCollection('users/hariomahlawat/Indian_States') 
+    .filter(ee.Filter.eq('st_nm',state_name)); //'ST_NM' is the state name field in shapefile. It can be different for different shapefiles.
   
     
   for (var j in year_list)

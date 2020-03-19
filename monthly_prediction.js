@@ -83,7 +83,7 @@ for (var i in district_list) {
       }
       
       var year = year_list[j];
-      var district = ee.FeatureCollection('users/hariomahlawat/India_adm2_edited')
+      var district = ee.FeatureCollection('users/hariomahlawat/india_district_boundaries')
       .filter(ee.Filter.eq('Name',district_name)); 
       var district_image = ee.ImageCollection('COPERNICUS/S2')
       .filterBounds(district)

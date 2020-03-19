@@ -15,8 +15,6 @@ function maskS2clouds(image) {
 
 //-------------------------------------------------------------------------
 
-var cloud_masks = require('users/fitoprincipe/geetools:cloud_masks');
-var maskClouds = cloud_masks.landsatTOA();
 
 var year_list = ['2016','2017','2018','2019'];
 
@@ -43,7 +41,7 @@ var india_image = ee.ImageCollection('COPERNICUS/S2') // searches all sentinel 2
   
 
 
-var ft = ee.FeatureCollection('users/hariomahlawat/training_dataset_india');
+var ft = ee.FeatureCollection('users/hariomahlawat/IndiaSat_dataset');
 
 var training = india_image.sampleRegions(ft,['class'],30);
 var trained = ee.Classifier.randomForest(10).train(training, 'class', bands);

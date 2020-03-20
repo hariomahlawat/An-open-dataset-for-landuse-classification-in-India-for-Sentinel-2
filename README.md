@@ -6,7 +6,7 @@ In this project, we have addressed various challenges in land cover classificati
 
 The training dataset in the folder named IndiaSat_dataset.zip
 
-## Shapefiles used as Google Earth Assets
+## Shapefiles used as Google Earth Engine Assets
 The following shapefiles were used to download the images, training the classifier and for prediction of landuse in various Indian dostrcits.
 * **India_Boundary.zip / India_Boundary.geojson** - Boundary for India.
 * **Indian_States.zip / Indian_States.geojson** - Boundaries for different Indian States.

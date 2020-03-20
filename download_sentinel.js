@@ -24,8 +24,7 @@ var state_list = ['Uttarakhand','Tripura','Tamil Nadu','Sikkim','Kerala','Gujara
 
 //Loading India image, the extracting data for Haryana (a state in India) and then subsequently Ambala (a district in Haryana)
 var bands = ['B4', 'B3', 'B2'];
-var india = ee.FeatureCollection('ft:1UDdgOCf8DoRJ9bVm-UVbR6CqxtkJToLQjTFd0r0Z','geometry')
-    .filter(ee.Filter.eq('Name','India'))
+var india = ee.FeatureCollection('users/hariomahlawat/India_Boundary')
     .geometry();
     
 

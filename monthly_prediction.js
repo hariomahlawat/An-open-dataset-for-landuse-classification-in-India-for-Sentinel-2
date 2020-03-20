@@ -68,9 +68,9 @@ for (var i in district_list) {
       else if (month=='year_median')
       {
         start_date = '01';
-        start_month == '01';
-        end_date == '31';
-        end_month == '12';
+        start_month = '01';
+        end_date = '31';
+        end_month = '12';
         
       }
       else

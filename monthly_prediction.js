@@ -26,8 +26,7 @@ var district_list =['Delhi','Mumbai','Hyderabad','Bangalore','Chennai','Chandiga
 var bands = ['B1','B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B10', 'B11','B12','B8A'];
 
 
-var india = ee.FeatureCollection('ft:1UDdgOCf8DoRJ9bVm-UVbR6CqxtkJToLQjTFd0r0Z','geometry')
-    .filter(ee.Filter.eq('Name','India'))
+var india = ee.FeatureCollection('users/hariomahlawat/India_Boundary')
     .geometry();
 
 var india_image = ee.ImageCollection('COPERNICUS/S2') // searches all sentinel 2 imagery pixels...

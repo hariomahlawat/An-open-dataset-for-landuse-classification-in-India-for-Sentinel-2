@@ -17,8 +17,7 @@ function maskS2clouds(image) {
 
 
 //boundary for India
-var india = ee.FeatureCollection('ft:1UDdgOCf8DoRJ9bVm-UVbR6CqxtkJToLQjTFd0r0Z','geometry')
-    .filter(ee.Filter.eq('Name','India'))
+var india = ee.FeatureCollection('users/hariomahlawat/Indian_Boundary')
     .geometry();
 
 // Now select your image for training!
@@ -44,7 +43,7 @@ training_image = addBands(training_image);
 var bands = ['B1','B2', 'B3', 'B4','B5','B6','B7','B8','B10','B11','B12','B8A','NDVI','NDBI'];
 
 //Training feature collection. Imported from assets (Its a shapefile)
-var training_fc = ee.FeatureCollection('users/hariomahlawat/training_dataset_india')
+var training_fc = ee.FeatureCollection('users/hariomahlawat/IndiaSat_dataset')
 
 // Get the values for all pixels in each polygon in the training.
 var training = training_image.sampleRegions({

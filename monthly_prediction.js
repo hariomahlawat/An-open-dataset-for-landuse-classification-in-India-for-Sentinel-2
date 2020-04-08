@@ -21,17 +21,18 @@ var year_list = ['2016','2017','2018','2019'];
 var month_list = ['01','02','03','04','05','06','07','08','09','10','11','12','year_median']
 
 var district_list =['Delhi','Mumbai','Hyderabad','Bangalore','Chennai','Chandigarh','Gurgaon','Kolkata'];
-
+//var district_list =['Delhi'];
 
 var bands = ['B1','B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B10', 'B11','B12','B8A'];
 
-
-var india = ee.FeatureCollection('users/hariomahlawat/India_Boundary')
+// Make sure that India_Boundary shapefiles are uploaded as assets in GEE and then change the path of that asset accordingly.
+var india = ee.FeatureCollection('users/chahatresearch/India_Boundary')
     .geometry();
 
+//The image for India is selected with less than 1 % cloud. This image is for training purpose.  
 var india_image = ee.ImageCollection('COPERNICUS/S2') // searches all sentinel 2 imagery pixels...
   .filterBounds(india)
-  .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 1)) // ...filters on the metadata for pixels less than 10% cloud
+  .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 1)) // ...filters on the metadata for pixels less than 1% cloud
   .filterDate('2019-01-1' ,'2019-05-30') //... chooses only pixels between the dates you define here
   .sort('CLOUD_COVER')
   .map(maskS2clouds)
@@ -39,10 +40,10 @@ var india_image = ee.ImageCollection('COPERNICUS/S2') // searches all sentinel 2
   .median()
   
 
+var ft = ee.FeatureCollection('users/chahatresearch/IndiaSat_dataset');
 
-var ft = ee.FeatureCollection('users/hariomahlawat/IndiaSat_dataset');
-
-var training = india_image.sampleRegions(ft,['class'],30);
+//Once a consolidated image of India is fetched, the chosen areas of groundtruth are fetched to train a random forest classifier
+var training = india_image.sampleRegions(ft,['class'],30); //['class'] refers to column name (in Indiasat datsset shapefiles) containing labels against each area. 30 denotes resolution.
 var trained = ee.Classifier.randomForest(10).train(training, 'class', bands);
 
 
@@ -60,14 +61,12 @@ for (var i in district_list) {
       
       if (month=='02')
       {
-        start_date = '01';
         start_month=month;
         end_date = '28';
         end_month=month;
       }
       else if (month=='year_median')
       {
-        start_date = '01';
         start_month = '01';
         end_date = '31';
         end_month = '12';
@@ -75,15 +74,22 @@ for (var i in district_list) {
       }
       else
       {
-        start_date='01';
         start_month=month;
         end_date = '30';
         end_month=month;
       }
       
       var year = year_list[j];
-      var district = ee.FeatureCollection('users/hariomahlawat/india_district_boundaries')
+      
+      /*
+      Make sure that india_district_boundaries shapefiles are uploaded as assets in GEE 
+      and then change the path of that asset accordingly.
+      Any region can be used in place of district. You need to have the shpefile of that region uploaded as assests in GEE and
+      then you need to change the path below accordingly.
+      */
+      var district = ee.FeatureCollection('users/chahatresearch/india_district_boundaries')
       .filter(ee.Filter.eq('Name',district_name)); 
+      
       var district_image = ee.ImageCollection('COPERNICUS/S2')
       .filterBounds(district)
       .filterDate(year + '-'+ start_month +'-'+ start_date,  year + '-'+ end_month +'-'+ end_date)
@@ -101,7 +107,7 @@ for (var i in district_list) {
 
       input = input.expression('LC',{'LC':input.select('classification')});
      
-      var str = district_name.replace(/\s/g,'');
+      var str = district_name.replace(/\s/g,'');	//remove spaces in the district name for naming the downloaded image
       var misc = '_30mtr_'+month 
       
       Export.image.toDrive({

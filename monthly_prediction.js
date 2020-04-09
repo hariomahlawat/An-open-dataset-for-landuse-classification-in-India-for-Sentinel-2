@@ -26,7 +26,7 @@ var district_list =['Delhi','Mumbai','Hyderabad','Bangalore','Chennai','Chandiga
 var bands = ['B1','B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B10', 'B11','B12','B8A'];
 
 // Make sure that India_Boundary shapefiles are uploaded as assets in GEE and then change the path of that asset accordingly.
-var india = ee.FeatureCollection('users/chahatresearch/India_Boundary')
+var india = ee.FeatureCollection('users/hariomahlawat/India_Boundary')
     .geometry();
 
 //The image for India is selected with less than 1 % cloud. This image is for training purpose.  
@@ -40,7 +40,7 @@ var india_image = ee.ImageCollection('COPERNICUS/S2') // searches all sentinel 2
   .median()
   
 
-var ft = ee.FeatureCollection('users/chahatresearch/IndiaSat_dataset');
+var ft = ee.FeatureCollection('users/hariomahlawat/IndiaSat_dataset');
 
 //Once a consolidated image of India is fetched, the chosen areas of groundtruth are fetched to train a random forest classifier
 var training = india_image.sampleRegions(ft,['class'],30); //['class'] refers to column name (in Indiasat datsset shapefiles) containing labels against each area. 30 denotes resolution.
@@ -87,7 +87,7 @@ for (var i in district_list) {
       Any region can be used in place of district. You need to have the shpefile of that region uploaded as assests in GEE and
       then you need to change the path below accordingly.
       */
-      var district = ee.FeatureCollection('users/chahatresearch/india_district_boundaries')
+      var district = ee.FeatureCollection('users/hariomahlawat/india_district_boundaries')
       .filter(ee.Filter.eq('Name',district_name)); 
       
       var district_image = ee.ImageCollection('COPERNICUS/S2')

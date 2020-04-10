@@ -44,7 +44,7 @@ var ft = ee.FeatureCollection('users/hariomahlawat/IndiaSat_dataset');
 
 //Once a consolidated image of India is fetched, the chosen areas of groundtruth are fetched to train a random forest classifier
 var training = india_image.sampleRegions(ft,['class'],30); //['class'] refers to column name (in Indiasat datsset shapefiles) containing labels against each area. 30 denotes resolution.
-var trained = ee.Classifier.randomForest(10).train(training, 'class', bands);
+var trained = ee.Classifier.randomForest(100).train(training, 'class', bands);
 
 
 for (var i in district_list) {

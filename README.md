@@ -9,6 +9,23 @@ The training dataset in the folder named IndiaSat_dataset.zip
 ## Methodology for pixel-level-classification 
 ![alt text](images/sentinel-2_classification.png?raw=true)
 
+## Step by step procedure to do classification of a selected area.
+* **Step 1  : Run the GEE script**
+
+Run the corresponding GEE script for monthly classification. (monthly_prediction.js).
+The output of the GEE script will be more than one images(max 12(one for each month) or less than 12(if cloud-free image of some months are not available) ) for your area of interest (selected area) for each year.
+
+> *Note - You should have the shapefile of that particular area or you can draw the area by hand in GEE.
+Someone, who is new to Google earth engine, can find all the help from this [place](https://developers.google.com/earth-engine/getstarted)*
+
+* **Step 2 : Compute final classification result for you area for each year**
+
+Use the *script final_year_prediction.ipynb* to calculate the final prediction (land-use classification prediction) of your selected area using the monthly prediction results.
+
+* **Step 3 : Perform temporal correction (If you are doing classification for more than two years )**
+
+Use the script *temporal_correction.py* to do temporal correction over yearly prediction of the selected area.
+
 ## Shapefiles used as Google Earth Engine Assets
 The following shapefiles were used to download the images, training the classifier and for prediction of landuse in various Indian dostrcits.
 * **India_Boundary.zip / India_Boundary.geojson** - Boundary for India.
